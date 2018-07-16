@@ -17,7 +17,14 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js(x)*$/,
+                test: /\.ts(x)?$/,
+                exclude: /node_modules/,
+                use: ['babel-loader',
+                    'ts-loader'
+                ]
+            },
+            {
+                test: /\.js(x)?$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
             },
@@ -73,7 +80,7 @@ module.exports = {
         }
     },
     resolve: {
-        extensions: [".js", ".jsx", ".scss", ".css"], //后缀名自动补全
+        extensions: [".js", ".jsx", ".scss", ".css",".tsx"], //后缀名自动补全
         alias: {
             '@': path.resolve(__dirname, "src")
         }
