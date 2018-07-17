@@ -8,7 +8,7 @@ const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
     entry: {
-        app: ["babel-polyfill", './src/index.js']
+        app: ["babel-polyfill", './src/main.tsx']
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -20,7 +20,7 @@ module.exports = {
                 test: /\.ts(x)?$/,
                 exclude: /node_modules/,
                 use: ['babel-loader',
-                    'ts-loader'
+                    'awesome-typescript-loader'
                 ]
             },
             {
