@@ -1,43 +1,77 @@
-import React from "react"
-import s from "./index"
+import React from 'react'
+import PropTypes from 'prop-types'
+import s from './index'
+const Children = React.Children
 export default class Xmap extends React.Component {
+    /**
+     * 
+     * @param {map,mapContainer} props 
+     */
     constructor(props) {
         super(props)
-        this.mapContainer = React.createRef();
+        // console.log('map')
+        this.mapContainer = React.createRef()
+        this.state = {}
+    }
+    static getDerivedStateFromProps(props,state) {
+        // console.log("getDerivedStateFromProps")
+        return null
+    }
+    shouldComponentUpdate() {
+        // console.log('shouldComponentupdate')
+        return true
     }
     componentDidMount() {
+        console.log('componentDidMount')
+        const { zoom, center } = this.props
         this.map = new window.AMap.Map(this.mapContainer.current, {
-            center: [116.397428, 39.90923],
-            zoom: 11
-        });
-        // 构造点标记
-        var marker = new AMap.Marker({
-            icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
-            position: [116.405467, 39.907761]
-        });
-        // 构造矢量圆形
-        var circle = new AMap.Circle({
-            center: new AMap.LngLat("116.403322", "39.920255"), // 圆心位置
-            radius: 1000,  //半径
-            strokeColor: "#F33",  //线颜色
-            strokeOpacity: 1,  //线透明度
-            strokeWeight: 3,  //线粗细度
-            fillColor: "#ee2200",  //填充颜色
-            fillOpacity: 0.35 //填充透明度
-        });
-
-        // 将以上覆盖物添加到地图上
-        // 单独将点标记添加到地图上
-        // map.add(marker);
-        // add方法可以传入一个覆盖物数组，将点标记和矢量圆同时添加到地图上
-        this.map.add([marker, circle]);
-        this.map.setFitView();
+            center,
+            zoom
+        })
+    }
+    getSnapshotBeforeUpdate() {
+        // console.log('getSnapshotBeforeUpdate')
+        return null
+    }
+    componentDidUpdate(){
+        // console.log('componentDidUpdate')
+    }
+    renderChildren() {
+        return Children.map(this.props.children, (child) => {
+            if (child) {
+                const cType = child.type
+                /* 针对下面两种组件不注入地图相关属性
+                 * 1. 明确声明不需要注入的
+                 * 2. DOM 元素
+                 */
+                if (typeof cType === 'string') {
+                    return child
+                }
+                // console.log(this.map)
+                return React.cloneElement(child, {
+                    _gd_map: this.map
+                })
+            }
+            return child
+        })
     }
     render() {
+        // console.log('render')
         return (
             <div ref={this.mapContainer} className={s.map_container}>
-
+                {this.renderChildren()}
             </div>
         )
     }
+}
+Xmap.propTypes = {
+    zoom: PropTypes.number,
+    center: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object
+    ])
+}
+Xmap.defaultProps = {
+    zoom: 11,
+    cneter: [116.397428, 39.90923]
 }

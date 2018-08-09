@@ -1,10 +1,10 @@
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon } from 'antd'
 import { withRouter } from 'react-router'
 import React from 'react'
-import { HashRouter  as Router, Route, Link } from "react-router-dom";
-import "./layout.global.scss"
-import routes from "@/routes"
-const { Header, Sider, Content } = Layout;
+import { HashRouter  as Router, Route, Link } from 'react-router-dom'
+import './layout.global.scss'
+import routes from '@/routes'
+const { Header, Sider, Content } = Layout
 
 class SiderDemo extends React.Component {
   state = {
@@ -14,10 +14,10 @@ class SiderDemo extends React.Component {
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
-    });
+    })
   }
-  handleClick = () => {
-    this.props.history.push("/map");
+  handleClick = (key) => {
+    this.props.history.push(key)
   }
   render() {
     const { match, location, history } = this.props
@@ -31,15 +31,15 @@ class SiderDemo extends React.Component {
         >
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1" onClick={this.handleClick}>
+            <Menu.Item key="1" onClick={() => this.handleClick('/map')}>
               <Icon type="user" />
               <span>nav 1</span>
             </Menu.Item>
-            <Menu.Item key="2">
+            <Menu.Item key="2" onClick={() => this.handleClick('/learnRedux')}>
               <Icon type="video-camera" />
               <span>nav 2</span>
             </Menu.Item>
-            <Menu.Item key="3">
+            <Menu.Item key="3" onClick={() => this.handleClick('/home')}>
               <Icon type="upload" />
               <span>nav 3</span>
             </Menu.Item>
@@ -54,11 +54,11 @@ class SiderDemo extends React.Component {
             />
           </Header>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
-          {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+            {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
           </Content>
         </Layout>
       </Layout>
-    );
+    )
   }
 }
 const RouteWithSubRoutes = route => (
@@ -68,11 +68,11 @@ const RouteWithSubRoutes = route => (
           <route.component {...props} routes={route.routes} />
       )}
   />
-);
+)
 const ShowTheLocationWithRouter = withRouter(SiderDemo)
 const RouteConfigExample = () => (
   <Router>
       <ShowTheLocationWithRouter/>
   </Router>
-);
+)
 export default RouteConfigExample

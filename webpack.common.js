@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -16,6 +15,12 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                enforce: "pre",
+                test: /\.js(x)$/,
+                exclude: /node_modules/,
+                loader: "eslint-loader",
+            },
             {
                 test: /\.js(x)*$/,
                 exclude: /node_modules/,
@@ -33,7 +38,8 @@ module.exports = {
             },
             {
                 test: /^((?!global).)*\.(sa|sc|c)ss$/,
-                exclude: /node_modules/,
+                // exclude: /node_modules/,
+                // include: path.join(__dirname, '/node_modules/antd'),
                 use: [
                     devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                     'css-loader?modules&localIdentName=[name]-[hash:base64:5]',
@@ -44,7 +50,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: 'react map',
             template: 'src/index.html'
@@ -61,15 +66,16 @@ module.exports = {
                 vendor: {
                     test: /[\\/]node_modules[\\/]/,
                     name: 'vendors',
-                    chunks: 'all'
-                },
-                styles: {
-                    name: 'styles',
-                    test: /\.(sa|sc|c)ss$/,
                     chunks: 'all',
-                    enforce: true
-                }
-            }
+                    priority: 10
+                },
+                // styles: {
+                //     name: 'styles',
+                //     test: /\.(sa|sc|c)ss$/,
+                //     chunks: 'all',
+                //     enforce: true
+                // }
+            },
         }
     },
     resolve: {

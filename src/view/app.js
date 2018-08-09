@@ -1,4 +1,4 @@
 import { hot } from 'react-hot-loader'
-import Home from '@/view/layout'
-
-export default hot(module)(Home)
+// import App from '@/view/layout'
+import App from '@/routes/route'
+export default hot(module)(App)
