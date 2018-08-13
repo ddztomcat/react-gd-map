@@ -9,8 +9,41 @@
 
 <strong>todos</strong>
 
-+ ...
++ ... 
+### react16 新生命周期
++ constructor
 
+   如果组件没有需要初始化的state，就没必要实现它，同时this.props === undefined
+   ```javascript
+   constructor(props) {
+    super(props);
+    // 不要调用setState()
+    this.state = { counter: 0 };
+    // 不允许这么赋值state
+    this.state = { color: props.color };
+    this.handleClick = this.handleClick.bind(this);
+    }
+   ```
++ Class Properties
+    + defaultProps
+        ```javascript
+        class CustomButton extends React.Component {
+        // ...
+        }
+        // 只有实例的props undefined 时，才生效
+            CustomButton.defaultProps = {
+            color: 'blue'
+        };
+        render() {
+            return <CustomButton /> ; // props.color 会被设置 blue
+        }
+        render() {
+            return <CustomButton color={null} /> ; // props.color 依然是null
+        }
+        ```
+    + displayName
+    
+        用在debug中
 
 ### 加入Eslint
 + 安装相关插件eslint-loader 是在webpack配置中用到

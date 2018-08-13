@@ -16,13 +16,14 @@ const LoadableHome = Loadable({
     loader: () => import('@/view/home/index'),
     loading: Loading,
 })
+console.log(LoadableXmap,'3333333333')
 const App = () => {
     return <Router>
         <div>
         <Switch>
-            <Route exact path="/" component={LoadableXmap} />
+            <Route exact path="/" component={LoadableHome} />
             {/* <Route path="/map" component={LoadableXmap} /> */}
-            <Route path="/home" component={LoadableHome} />
+            <Route path="/map" component={LoadableXmap} />
             <Route path="/learn" component={LoadableLearnRedux} />
             
         </Switch>
