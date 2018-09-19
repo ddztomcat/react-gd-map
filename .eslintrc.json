@@ -20,7 +20,7 @@
         "react"
     ],
     "rules": {
-        "semi": ["error","never"],
+        "semi": ["error","always"],
         "no-console": 0,
         "quotes": ["error", "single"],
         "no-unused-vars": 0,

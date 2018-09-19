@@ -1,5 +1,5 @@
-import React from 'react'
-import FilterLink from '@/components/smarts/FilterLink'
+import React from 'react';
+import FilterLink from '@/components/smarts/FilterLink';
 
 const Footer = () => (
   <p>
@@ -17,6 +17,6 @@ const Footer = () => (
       Completed
     </FilterLink>
   </p>
-)
+);
 
-export default Footer
+export default Footer;

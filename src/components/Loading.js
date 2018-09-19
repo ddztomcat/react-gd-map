@@ -1,2 +1,2 @@
-import React from 'react'
-export default () => <div>loading</div>
+import React from 'react';
+export default () => <div>loading</div>;

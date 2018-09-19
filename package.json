@@ -53,6 +53,8 @@
     "antd": "^3.7.0",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
+    "mobx": "^5.1.0",
+    "mobx-react": "^5.2.6",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",

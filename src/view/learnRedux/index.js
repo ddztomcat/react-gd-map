@@ -1,12 +1,12 @@
-import React from 'react'
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import todoApp from '@/redux/reducers'
-import Footer from '@/components/dumbs/Footer'
-import AddTodo from '@/components/smarts/AddTodo'
-import VisibleTodoList from '@/components/smarts/VisibleTodoList'
+import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import todoApp from '@/redux/reducers';
+import Footer from '@/components/dumbs/Footer';
+import AddTodo from '@/components/smarts/AddTodo';
+import VisibleTodoList from '@/components/smarts/VisibleTodoList';
 
-let store = createStore(todoApp)
+let store = createStore(todoApp);
 const App = () => {
     return <div>
         <Provider store={store}>
@@ -16,6 +16,6 @@ const App = () => {
                 <Footer />
             </div>
         </Provider>
-    </div>
-}
-export default App
+    </div>;
+};
+export default App;

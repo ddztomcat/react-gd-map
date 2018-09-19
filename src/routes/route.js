@@ -1,22 +1,21 @@
-import { HashRouter as Router, Route, Switch } from 'react-router-dom'
-import React from 'react'
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import React from 'react';
 // import  {LoadableXmap, LoadableLearnRedux, LoadableHome} from './index'
-import Loading from '@/components/Loading'
-import Loadable from 'react-loadable'
+import Loading from '@/components/Loading';
+import Loadable from 'react-loadable';
 
 const LoadableXmap = Loadable({
     loader: () => import('@/components/xmap/demo'),
     loading: Loading,
-})
+});
 const LoadableLearnRedux = Loadable({
     loader: () => import('@/view/learnRedux/index'),
     loading: Loading,
-})
+});
 const LoadableHome = Loadable({
     loader: () => import('@/view/home/index'),
     loading: Loading,
-})
-console.log(LoadableXmap,'3333333333')
+});
 const App = () => {
     return <Router>
         <div>
@@ -28,6 +27,6 @@ const App = () => {
             
         </Switch>
         </div>
-    </Router>
-}
-export default App
+    </Router>;
+};
+export default App;

@@ -1,5 +1,5 @@
 ## 从零搭建一个基于React的开发模板
->目前加入了webpack4、Redux4、React16、React-Router4、Eslint
+>目前加入了webpack4、Redux4、React16、React-Router4、Eslint、Mobx5
 
 <strong>dones</strong>
 
@@ -250,3 +250,22 @@ entry: {
         app: ["babel-polyfill", './src/index.js']
 },
 ```
+### Mobx 注意点
++ @observable observable
+```javascript
+class HomeStore {
+    @observable a = []
+    @observable b = []
+    constructor() {
+        this.a = this.b = observable([{name: '23423'}])
+        console.log(this.a === this.b)// true
+        this.a = this.b = []
+        console.log(this.a === this.b)// false
+    }
+}
+this
+```
++ mobx 只会触发react 的render 函数，但render 函数自身会调用后续的生命周期
++ Array.isArray(observable([1,2,3])) === false
++ toJS 返回的 递归地将一个(observable)对象转换为 javascript 结构 this.observableData !== toJS(this.observableData)
++ 默认情况下将一个数据结构转换成可观察的是有感染性的，这意味着 observable 被自动应用于数据结构包含的任何值，或者将来会被该数据结构包含的值。

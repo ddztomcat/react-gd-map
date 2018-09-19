@@ -1,10 +1,10 @@
-import { Layout, Menu, Icon } from 'antd'
-import { withRouter } from 'react-router'
-import React from 'react'
-import { HashRouter  as Router, Route, Link } from 'react-router-dom'
-import './layout.global.scss'
-import routes from '@/routes'
-const { Header, Sider, Content } = Layout
+import { Layout, Menu, Icon } from 'antd';
+import { withRouter } from 'react-router';
+import React from 'react';
+import { HashRouter  as Router, Route, Link } from 'react-router-dom';
+import './layout.global.scss';
+import routes from '@/routes';
+const { Header, Sider, Content } = Layout;
 
 class SiderDemo extends React.Component {
   state = {
@@ -14,14 +14,14 @@ class SiderDemo extends React.Component {
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
-    })
+    });
   }
   handleClick = (key) => {
-    this.props.history.push(key)
+    this.props.history.push(key);
   }
   render() {
-    const { match, location, history } = this.props
-    console.log(location)
+    const { match, location, history } = this.props;
+    console.log(location);
     return (
       <Layout id="components-layout-demo-custom-trigger">
         <Sider
@@ -58,7 +58,7 @@ class SiderDemo extends React.Component {
           </Content>
         </Layout>
       </Layout>
-    )
+    );
   }
 }
 const RouteWithSubRoutes = route => (
@@ -68,11 +68,11 @@ const RouteWithSubRoutes = route => (
           <route.component {...props} routes={route.routes} />
       )}
   />
-)
-const ShowTheLocationWithRouter = withRouter(SiderDemo)
+);
+const ShowTheLocationWithRouter = withRouter(SiderDemo);
 const RouteConfigExample = () => (
   <Router>
       <ShowTheLocationWithRouter/>
   </Router>
-)
-export default RouteConfigExample
+);
+export default RouteConfigExample;
