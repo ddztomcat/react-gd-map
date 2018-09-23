@@ -44,7 +44,9 @@
     + displayName
     
         用在debug中
-
++ PureComponent 与 Component
+    + Component 中 shouldUpdate 默认返回true，即使props没有变化
+    + PureComponent 中的 shouldUpdate 对props, state进行浅比较，引用值没变不会调用render
 ### 加入Eslint
 + 安装相关插件eslint-loader 是在webpack配置中用到
 ```bash

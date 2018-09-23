@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import ToDoList from './todoList';
 import s from './home.scss';
 import cs from 'classnames';
@@ -23,11 +23,12 @@ export default class Home extends Component {
     //     return null;
     // }
     handelClick = () => {
-        // this.List.push({item: 'hello world' + Math.random()});
-        this.t = [{item: 1}];
-        // this.setState({
-        //     show: true
-        // });
+        this.List.push({item: 'hello world' + Math.random()});
+        // this.List = this.List.concat([{item: 1}]);
+        // console.log(this.List);
+        this.setState({
+            show: true
+        });
     }
     // shouldComponentUpdate() {
     //     console.log('shouldComponentupdate');
@@ -56,7 +57,7 @@ export default class Home extends Component {
         
         return <div>
             {/* <ToDoList List={this.List} /> */}
-            <ToDoList List={this.t}/>
+            <ToDoList List={this.List}/>
             <button onClick={this.handelClick}>click</button>
             </div>;
     }
