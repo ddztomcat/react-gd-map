@@ -57,7 +57,7 @@ npm i -D eslint eslint-loader eslint-plugin-react babel-eslint
 rules: [
             {
                 enforce: "pre",
-                test: /\.js(x)$/,
+                test: /\.js(x)?$/,
                 exclude: /node_modules/,
                 loader: "eslint-loader",
             }
@@ -100,6 +100,18 @@ rules: [
 "scripts": {
     "fix": "eslint --fix --ext .js,.jsx src"
   },
+```
++ 代码中禁用eslint
+```javascript
+/* eslint-disable */
+alert('foo');
+/* eslint-enable */
+alert('foo'); // eslint-disable-line
+// eslint-disable-next-line
+alert('foo');
+/* eslint-disable-next-line */
+alert('foo');
+alert('foo'); /* eslint-disable-line */
 ```
 ### 加入各种webpack插件
 #### webpack-bundle-analyzer

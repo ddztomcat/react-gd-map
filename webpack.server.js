@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var EventHooksPlugin = require('event-hooks-webpack-plugin');
 var nodemon = require("nodemon");
 const devMode = process.env.NODE_ENV !== 'production'
-console.log(devMode,'$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+
 let running = false;
 module.exports = {
     mode: devMode ? 'development' : 'production',
@@ -13,7 +13,7 @@ module.exports = {
         app: ["babel-polyfill", './src/server.js']
     },
     output: {
-        path: path.resolve(__dirname, 'ssr-dist'),
+        path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
         filename: 'server.js',
         chunkFilename: '[name].bundle.js'
@@ -22,7 +22,7 @@ module.exports = {
         rules: [
             {
                 enforce: "pre",
-                test: /\.js(x)$/,
+                test: /\.js(x)?$/,
                 exclude: /node_modules/,
                 loader: "eslint-loader",
             },
@@ -35,7 +35,7 @@ module.exports = {
                 test: /^(.*?)\.(global)\.(sa|sc|c)ss$/,//xxx.global.
                 exclude: /node_modules/,
                 use: [
-                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
                     'postcss-loader',
                     'sass-loader'
@@ -46,7 +46,7 @@ module.exports = {
                 // exclude: /node_modules/,
                 // include: path.join(__dirname, '/node_modules/antd'),
                 use: [
-                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    MiniCssExtractPlugin.loader,
                     'css-loader?modules&localIdentName=[name]-[hash:base64:5]',
                     'postcss-loader',
                     'sass-loader'
@@ -63,7 +63,7 @@ module.exports = {
             'done': () => {
                 if(!running) {
                     running = true;
-                     process.chdir(path.join(__dirname, "./ssr-dist"));
+                     process.chdir(path.join(__dirname, "./dist"));
                         console.log('nodemon start...')
                         nodemon({
                             script: 'server.js',

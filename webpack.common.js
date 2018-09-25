@@ -17,7 +17,7 @@ module.exports = {
         rules: [
             {
                 enforce: "pre",
-                test: /\.js(x)$/,
+                test: /\.js(x)?$/,
                 exclude: /node_modules/,
                 loader: "eslint-loader",
             },
@@ -30,7 +30,7 @@ module.exports = {
                 test: /^(.*?)\.(global)\.(sa|sc|c)ss$/,//xxx.global.
                 exclude: /node_modules/,
                 use: [
-                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
                     'postcss-loader',
                     'sass-loader'
@@ -41,7 +41,7 @@ module.exports = {
                 // exclude: /node_modules/,
                 // include: path.join(__dirname, '/node_modules/antd'),
                 use: [
-                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    MiniCssExtractPlugin.loader,
                     'css-loader?modules&localIdentName=[name]-[hash:base64:5]',
                     'postcss-loader',
                     'sass-loader'
@@ -51,7 +51,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'react map',
+            title: 'react 全家桶',
             template: 'src/index.html'
         }),
         new webpack.HashedModuleIdsPlugin(),

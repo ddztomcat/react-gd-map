@@ -1,17 +1,20 @@
-import express from 'express'
-import {matchPath, StaticRouter} from "react-router-dom";
+import express from 'express';
+import {matchPath, StaticRouter} from 'react-router-dom';
 import React from 'react';
-import {renderToStaticMarkup} from 'react-dom/server'
-import routes from '@/serverRender/routes'
-import App from '@/serverRender'
-import html from './html'
-const projectConfig = require('../project-config')
+import {renderToStaticMarkup} from 'react-dom/server';
+// import routes from '@/serverRender/routes';
+// import App from '@/serverRender';
+import routes from '@/routes';
+import App from '@/view/layout/ssr-index';
+import html from './html';
+const projectConfig = require('../project-config');
 
 
 const server = express();
 
 server.use('/public', express.static('./public'));
 server.use(async function(req, res, next) {
+    console.log(333)
     if(req.method === 'GET') {
         let matchResult = null;
         const route = routes.find(f => {
@@ -20,7 +23,7 @@ server.use(async function(req, res, next) {
                 exact: f.exact || false,
                 strict: f.exact || false
             });
-            return matchResult ? true : false
+            return matchResult ? true : false;
         });
         if(route) {
             console.info(`${req.path} is matched : ${JSON.stringify(matchResult)}`);
@@ -32,17 +35,17 @@ server.use(async function(req, res, next) {
                     <App />
                 </StaticRouter>
             );
-            console.info(`${req.path}  : ${markup}`)
+            console.info(`${req.path}  : ${markup}`);
             const content = html.getHtml()
                 .replace('div id="root"></div>', `div id="root">${markup}</div>`);
             res.send(content);
         }else {
-            next()
+            next();
         }
     }
-    next()
-})
+    next();
+});
 server.listen(projectConfig.ssr.port, function() {
     console.info(`runtime environment = ${process.env.NODE_ENV}`);
     console.info(`address http://127.0.0.1:${projectConfig.ssr.port}`);
-})
+});

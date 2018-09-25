@@ -24,8 +24,8 @@ module.exports = merge(common, {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
-        new BundleAnalyzerPlugin({
-            analyzerPort:23000
-        })
+        // new BundleAnalyzerPlugin({
+        //     analyzerPort:23000
+        // })
     ]
 });

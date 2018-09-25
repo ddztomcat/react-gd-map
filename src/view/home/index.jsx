@@ -23,7 +23,7 @@ export default class Home extends Component {
     //     return null;
     // }
     handelClick = () => {
-        this.List.push({item: 'hello world' + Math.random()});
+        this.List.push({item: 'test' + Math.random()});
         // this.List = this.List.concat([{item: 1}]);
         // console.log(this.List);
         this.setState({
