@@ -1,18 +1,11 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
-    entry: {
-        app: ["babel-polyfill", './src/index.js']
-    },
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/'
-    },
+    mode: devMode ? 'development' : 'production',
     module: {
         rules: [
             {
@@ -27,7 +20,17 @@ module.exports = {
                 use: ['babel-loader']
             },
             {
-                test: /^(.*?)\.(global)\.(sa|sc|c)ss$/,//xxx.global.
+                test: /^((?!global).)*\.(sa|sc|c)ss$/,// 匹配不带global的 && !/node_modules/
+                exclude: /node_modules/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader?modules&localIdentName=[name]-[hash:base64:5]',
+                    'postcss-loader',
+                    'sass-loader'
+                ]
+            },
+            {
+                test: /^(.*?)(\.(global))\.(sa|sc|c)ss$/,// 匹配带global的 && !/node_modules/
                 exclude: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,
@@ -37,23 +40,24 @@ module.exports = {
                 ]
             },
             {
-                test: /^((?!global).)*\.(sa|sc|c)ss$/,
-                // exclude: /node_modules/,
-                // include: path.join(__dirname, '/node_modules/antd'),
+                test: /\.(sa|sc|c)ss$/,// 匹配不带global的 && /node_modules/
+                include: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    'css-loader?modules&localIdentName=[name]-[hash:base64:5]',
+                    'css-loader',
                     'postcss-loader',
                     'sass-loader'
+                ]
+            },
+            {
+                test: /\.(png|jpg|gif)$/i,
+                use: [
+                    'url-loader?limit=8192&name=[name].[ext]&outputPath=images/'
                 ]
             }
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            title: 'react 全家桶',
-            template: 'src/index.html'
-        }),
         new webpack.HashedModuleIdsPlugin(),
         new MiniCssExtractPlugin({
             filename: devMode ? '[name].css' : '[name].[contenthash].css'

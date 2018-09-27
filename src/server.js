@@ -14,7 +14,7 @@ const server = express();
 
 server.use('/public', express.static('./public'));
 server.use(async function(req, res, next) {
-    console.log(333)
+    console.log(req.path)
     if(req.method === 'GET') {
         let matchResult = null;
         const route = routes.find(f => {

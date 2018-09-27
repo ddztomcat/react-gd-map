@@ -1,7 +1,7 @@
 import { Layout, Menu, Icon } from 'antd';
 import { withRouter } from 'react-router';
 import React from 'react';
-import { HashRouter  as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter  as Router, Route, Link } from 'react-router-dom';
 import './layout.global.scss';
 import routes from '@/routes';
 const { Header, Sider, Content } = Layout;

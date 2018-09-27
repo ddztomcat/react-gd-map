@@ -1,6 +1,5 @@
 module.exports = {
-    port: 5000,
-    ssr: {
-        port: 8888
-    }
+    PORT: 8888,
+    SSR_INDEX:'./src/browser.js',
+    SPA_INDEX:'./src/index.js'
 }

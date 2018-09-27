@@ -2,7 +2,7 @@ import React, { Component, PureComponent } from 'react';
 import ToDoList from './todoList';
 import s from './home.scss';
 import cs from 'classnames';
-
+import { Button } from 'antd';
 export default class Home extends Component {
     constructor(props) {
         super(props);
@@ -55,10 +55,10 @@ export default class Home extends Component {
     render() {
         const { show } = this.state;
         
-        return <div>
-            {/* <ToDoList List={this.List} /> */}
+        return <div className={cs(s.home)}>
             <ToDoList List={this.List}/>
             <button onClick={this.handelClick}>click</button>
+            <Button type="primary">default</Button>
             </div>;
     }
 }

@@ -4,11 +4,14 @@
   "description": "webpack4 react16",
   "private": true,
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config webpack.pro.js",
-    "start": "cross-env NODE_ENV=development node dev-server.js",
+    "build": "cross-env NODE_ENV=production SSR=0 webpack --config webpack.browser.js",
+    "start": "cross-env NODE_ENV=development SSR=0 node dev-server.js",
     "look": "http-server ./dist -p 4396",
     "fix": "eslint --fix --ext .js,.jsx src",
-    "start:ssr": "cross-env NODE_ENV=development webpack --config webpack.ssr.js --watch"
+    "build:browser": "cross-env NODE_ENV=production SSR=1 webpack --config webpack.browser.js",
+    "start:browser": "cross-env NODE_ENV=development SSR=1 node dev-server.js",
+    "start:server": "cross-env NODE_ENV=development webpack --config webpack.server.js",
+    "build:server": "cross-env NODE_ENV=production webpack --config webpack.server.js"
   },
   "keywords": [],
   "author": "ddz",
@@ -34,6 +37,7 @@
     "eslint-loader": "^2.1.0",
     "eslint-plugin-react": "^7.10.0",
     "event-hooks-webpack-plugin": "^2.1.0",
+    "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.11.1",
     "mini-css-extract-plugin": "^0.4.1",
@@ -45,6 +49,7 @@
     "react-hot-loader": "^4.3.3",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
+    "url-loader": "^1.1.1",
     "webpack": "^4.16.0",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.0.8",
