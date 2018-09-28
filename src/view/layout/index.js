@@ -1,12 +1,12 @@
 import { Layout, Menu, Icon } from 'antd';
 import { withRouter } from 'react-router';
 import React from 'react';
-import { BrowserRouter  as Router, Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './layout.global.scss';
 import routes from '@/routes';
 const { Header, Sider, Content } = Layout;
 
-class SiderDemo extends React.Component {
+class Sider extends React.Component {
   state = {
     collapsed: false,
   };
@@ -69,10 +69,5 @@ const RouteWithSubRoutes = route => (
       )}
   />
 );
-const ShowTheLocationWithRouter = withRouter(SiderDemo);
-const RouteConfigExample = () => (
-  <Router>
-      <ShowTheLocationWithRouter/>
-  </Router>
-);
-export default RouteConfigExample;
+const ShowTheLocationWithRouter = withRouter(Sider);
+export default ShowTheLocationWithRouter;

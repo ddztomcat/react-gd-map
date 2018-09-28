@@ -7,11 +7,9 @@ const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const path = require("path");
-const {SSR_INDEX, SPA_INDEX} = require('./project-config');
+const {PATHS} = require('./project-config');
 
 const devMode = process.env.NODE_ENV !== "production";
-const IS_SPA = process.env.SSR == 0
-let INDEX = IS_SPA ? SPA_INDEX : SSR_INDEX
 
 let plugs = [
   new HtmlWebpackPlugin({
@@ -39,11 +37,11 @@ if (!devMode) {
 module.exports = merge(common, {
   devtool: devMode ? "inline-source-map" : false,
   entry: {
-    app: ["babel-polyfill", INDEX]
+    app: ["babel-polyfill", PATHS.index]
   },
   output: {
-    path: path.resolve(__dirname, "dist/public"),
-    publicPath: "",
+    path: path.resolve(__dirname, PATHS.output),
+    publicPath: PATHS.publicPath,
     filename: devMode ? "[name].js" : "[name].[chunkhash].js",
     chunkFilename: devMode ? "[name].bundle.js" : "[name].[chunkhash].js"
   },

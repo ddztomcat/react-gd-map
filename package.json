@@ -4,12 +4,11 @@
   "description": "webpack4 react16",
   "private": true,
   "scripts": {
-    "build": "cross-env NODE_ENV=production SSR=0 webpack --config webpack.browser.js",
-    "start": "cross-env NODE_ENV=development SSR=0 node dev-server.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.browser.js",
+    "start": "cross-env NODE_ENV=development node dev-server.js",
     "look": "http-server ./dist -p 4396",
     "fix": "eslint --fix --ext .js,.jsx src",
-    "build:browser": "cross-env NODE_ENV=production SSR=1 webpack --config webpack.browser.js",
-    "start:browser": "cross-env NODE_ENV=development SSR=1 node dev-server.js",
+    "dev:browser": "cross-env NODE_ENV=production webpack --config webpack.browser.js --watch",
     "start:server": "cross-env NODE_ENV=development webpack --config webpack.server.js",
     "build:server": "cross-env NODE_ENV=production webpack --config webpack.server.js"
   },

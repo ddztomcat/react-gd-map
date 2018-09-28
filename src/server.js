@@ -45,7 +45,7 @@ server.use(async function(req, res, next) {
     }
     next();
 });
-server.listen(projectConfig.ssr.port, function() {
+server.listen(projectConfig.PORT, function() {
     console.info(`runtime environment = ${process.env.NODE_ENV}`);
-    console.info(`address http://127.0.0.1:${projectConfig.ssr.port}`);
+    console.info(`address http://127.0.0.1:${projectConfig.PORT}`);
 });

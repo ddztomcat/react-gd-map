@@ -1,9 +1,6 @@
 
 import Loading from '@/components/Loading';
 import Loadable from 'react-loadable';
-// import Xmap from '@/components/xmap/demo';
-// import LearnRedux from '@/view/learnRedux/index';
-// import Home from '@/view/home/index';
 const LoadableXmap = Loadable({
     loader: () => import('@/components/xmap/demo'),
     loading: Loading,
@@ -30,19 +27,4 @@ const routes = [
         component: LoadableHome
     },
 ];
-// const routes = [
-//     {
-//         path: '/',
-//         component: Xmap
-//     },
-//     {
-//         path: '/learnRedux',
-//         component: LearnRedux
-//     },
-//     {
-//         path: '/home',
-//         component: Home
-//     },
-// ];
 export default routes;
-export {LoadableXmap, LoadableLearnRedux, LoadableHome};

@@ -5,8 +5,9 @@ const configBrowser = require("./webpack.browser.js");
 const merge = require("webpack-merge");
 const OpenBrowserPlugin = require("open-browser-webpack-plugin");
 const path = require("path");
+
 const options = {
-  contentBase: path.join(__dirname, "dist"),
+  // contentBase: path.join(__dirname, 'dist/'),
   compress: true,
   hot: true,
   host: "localhost",

@@ -36,4 +36,9 @@ export default class Item extends React.Component {
         console.log('item will Unmount');
         
     }
+
+     shouldComponentUpdate() {
+        console.log('item shouldComponentupdate');
+        return true;
+    }
 }

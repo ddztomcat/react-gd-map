@@ -11,6 +11,7 @@
 
 + ... 
 ### react16 新生命周期
+![生命周期图示](screenShot/生命周期.png)
 + constructor
 
    如果组件没有需要初始化的state，就没必要实现它，同时this.props === undefined
@@ -24,6 +25,21 @@
     this.handleClick = this.handleClick.bind(this);
     }
    ```
++ static getDerivedStateFromProps
+```javascript
+static getDerivedStateFromProps(nextProps, prevState) {
+        // 只要调用render之前，都会触发它，这也是与componentWillReceiveProps的不同之处，由于是static，不能访问组件实例
+        // 返回一个更新 state(状态) 的对象，或者返回 null 以不更新任何 state(状态)
+        return null;
+    }
+```
++ getSnapshotBeforeUpdate
+```javascript
+    getSnapshotBeforeUpdate() {
+        // 返回一个 snapshot，并且会在componentDidUpdate函数第三个参数中接收到
+        return null;
+    }
+```
 + Class Properties
     + defaultProps
         ```javascript
