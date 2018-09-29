@@ -3,6 +3,7 @@ import ToDoList from './todoList';
 import s from './home.scss';
 import cs from 'classnames';
 import { Button } from 'antd';
+import HTTP from '@/tools/request';
 export default class Home extends Component {
     constructor(props) {
         super(props);
@@ -48,9 +49,20 @@ export default class Home extends Component {
     // componentDidUpdate(preProps, preState, snapshot) {
     //     console.log('componentDidUpdate');
     // }
-    // componentDidMount() {
-    //     console.log('componentDidMount');
-    // }
+    componentDidMount() {
+        HTTP.post('http://localhost:8889/api/mock-1', {
+            method: 'POST',
+            headers: {
+                // "Content-Type": "application/json; charset=utf-8",
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'a=123&b=456'
+        })
+        .then(res => {
+            console.log(res);
+        });
+        console.log('componentDidMount');
+    }
 
     render() {
         const { show } = this.state;

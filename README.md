@@ -1,6 +1,9 @@
 ## 从零搭建一个基于React的开发模板
 >目前加入了webpack4、Redux4、React16、React-Router4、Eslint、Mobx5
-
+### 如何使用
+```javascript
+// 全局安装 cross-env nodemon webpack http-server eslint
+```
 <strong>dones</strong>
 
 + 代码分离、异步路由
