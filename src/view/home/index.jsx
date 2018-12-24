@@ -50,17 +50,17 @@ export default class Home extends Component {
     //     console.log('componentDidUpdate');
     // }
     componentDidMount() {
-        HTTP.post('http://localhost:8889/api/mock-1', {
-            method: 'POST',
-            headers: {
-                // "Content-Type": "application/json; charset=utf-8",
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: 'a=123&b=456'
-        })
-        .then(res => {
-            console.log(res);
-        });
+        // HTTP.post('http://localhost:8889/api/mock-1', {
+        //     method: 'POST',
+        //     headers: {
+        //         // "Content-Type": "application/json; charset=utf-8",
+        //         'Content-Type': 'application/x-www-form-urlencoded',
+        //     },
+        //     body: 'a=123&b=456'
+        // })
+        // .then(res => {
+        //     console.log(res);
+        // });
         console.log('componentDidMount');
     }
 
